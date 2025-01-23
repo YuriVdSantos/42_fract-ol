@@ -55,6 +55,15 @@ int main() {
     mlx_hook(win, KeyPress, KeyPressMask, key_press, NULL);
     mlx_hook(win, DestroyNotify, NoEventMask, close_window, mlx);
     mlx_loop(mlx);
+<<<<<<< HEAD
+=======
+
+    if (keycode == 53)
+    {
+        mlx_loop_end(mlx);
+    }
+
+>>>>>>> cbfae4734a8bfd9093ebd0541dc6771789dbb386
     mlx_destroy_window(mlx, win);
     mlx_destroy_display(mlx);
     free(mlx);
