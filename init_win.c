@@ -3,11 +3,24 @@
 #include <stdlib.h>
 #include <X11/X.h>
 
-// Definição da função key_press
-int key_press(int keycode, void *param) {
+int key_press(int keycode, void *param)
+{
+    if (keycode == 65307) 
+    {
+        mlx_loop_end(param);
+
+        free(param);
+    }
     printf("Key pressed: %d\n", keycode);
+    return(0);
+}
+
+int close_window(void *param)
+{
+    mlx_loop_end(param); // Encerra o loop do MiniLibX
     return 0;
 }
+
 
 int main() {
     void *mlx;
@@ -30,11 +43,21 @@ int main() {
     }
 
     // Configurando o hook para eventos de pressionamento de tecla
+
+    int i = 0 ;
+    int j = 0 ;
+    while(i < 100)
+    {
+        mlx_pixel_put(mlx, win, (i+100) , (j+100), 159);
+        j++;
+        i++;
+    }
     mlx_hook(win, KeyPress, KeyPressMask, key_press, NULL);
-
+    mlx_hook(win, DestroyNotify, NoEventMask, close_window, mlx);
     mlx_loop(mlx);
-
     mlx_destroy_window(mlx, win);
     mlx_destroy_display(mlx);
+    free(mlx);
+    free(win);
     return (0);
 }
