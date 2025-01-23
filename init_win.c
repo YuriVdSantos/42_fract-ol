@@ -34,6 +34,11 @@ int main() {
 
     mlx_loop(mlx);
 
+    if (keycode == 53)
+    {
+        mlx_loop_end(mlx);
+    }
+
     mlx_destroy_window(mlx, win);
     mlx_destroy_display(mlx);
     return (0);
