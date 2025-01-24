@@ -42,28 +42,47 @@ int main() {
         return (1);
     }
 
-    // Configurando o hook para eventos de pressionamento de tecla
-
     int i = 0 ;
     int j = 0 ;
-    while(i < 100)
-    {
-        mlx_pixel_put(mlx, win, (i+100) , (j+100), 159);
-        j++;
-        i++;
-    }
+   
+	int	x = 0;
+	int	y = 0;
+    int	x0 = x;
+	int	y0 = y ;
+	int color = 000;
+	int xtemp = 0;
+	int	iteration = 111;
+	int	max_iteration = 1000;
+	while (i < max_iteration)
+	{
+		while ( x*x + y*y <= (2*2) && iteration < max_iteration)
+		{
+			xtemp = x*x - y*y + x0;
+			y = 2*x*y + y0;
+
+			x = xtemp;
+
+			iteration = iteration + 1;
+		}
+
+		if ( iteration == max_iteration )
+		{
+			color = 000;
+			mlx_pixel_put(mlx, win, x0, y0, color);	
+		}
+		else
+			color = iteration;
+
+		mlx_pixel_put(mlx, win, x0, y0, color);
+		j++;
+		i++;
+	}
     mlx_hook(win, KeyPress, KeyPressMask, key_press, NULL);
     mlx_hook(win, DestroyNotify, NoEventMask, close_window, mlx);
     mlx_loop(mlx);
-<<<<<<< HEAD
-=======
 
-    if (keycode == 53)
-    {
-        mlx_loop_end(mlx);
-    }
 
->>>>>>> cbfae4734a8bfd9093ebd0541dc6771789dbb386
+
     mlx_destroy_window(mlx, win);
     mlx_destroy_display(mlx);
     free(mlx);
