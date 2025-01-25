@@ -14,7 +14,7 @@ int key_press(int keycode, void *param)
     printf("Key pressed: %d\n", keycode);
     return(0);
 }
-
+//preciso criar uma funçao para printar imagem
 int close_window(void *param)
 {
     mlx_loop_end(param); // Encerra o loop do MiniLibX
