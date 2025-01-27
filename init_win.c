@@ -1,7 +1,7 @@
 #include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include </opt/X11/include/X11/X.h>
+#include <X11/X.h>
 
 int key_press(int keycode, void *param)
 {
