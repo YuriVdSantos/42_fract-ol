@@ -5,7 +5,7 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MAX_ITER 100
+#define MAX_ITER 10000
 
 typedef struct s_data {
     void    *mlx;
@@ -67,7 +67,7 @@ void draw_mandelbrot(t_data *data) {
 	double y_max = 1.5;
 	int py = 0;
 	while ( py < HEIGHT) 
-	{
+	{ 
 		int px = 0;
 		while (px < WIDTH)
 		{
