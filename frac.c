@@ -5,7 +5,7 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MAX_ITER 10000
+#define MAX_ITER 600
 
 typedef struct s_data {
     void    *mlx;
@@ -36,12 +36,11 @@ int key_press(int keycode, void *param)
 	if (keycode == 65307) 
 	{
 		mlx_loop_end(param);
-		free(param);
 	}
 	return(0);
 }
 
-int mandelbrot(double cr, double ci, int max_iter) {
+int mandelbrot(double cr, double ci, int max_iter) { 
 	double zr = 0.0, zi = 0.0;
 	int n = 0;
 
@@ -92,13 +91,13 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	if (button == 4)
 		data->zoom *= 1.1;
 	else if (button == 5)
-		data->zoom *= 1.1;
+		data->zoom /= 1.1;
 	draw_mandelbrot(data);
 	double zoom_factor =1.0 / data->zoom;
-	data->x_min = mouse_re - (mouse_re - data->x_min) * zoom_factor;
-	data->x_max = mouse_re + (data->x_max - mouse_re) * zoom_factor;
-	data->y_min = mouse_re - (mouse_im - data->y_min) * zoom_factor;
-	data->y_max = mouse_im + (data->y_max - mouse_im) * zoom_factor;
+	data->x_min = mouse_re - (mouse_re - data->x_min) / zoom_factor;
+	data->x_max = mouse_re + (data->x_max - mouse_re) / zoom_factor;
+	data->y_min = mouse_re - (mouse_im - data->y_min) / zoom_factor;
+	data->y_max = mouse_im + (data->y_max - mouse_im) / zoom_factor;
 	return (0);
 }
 

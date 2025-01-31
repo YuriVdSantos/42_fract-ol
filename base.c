@@ -5,7 +5,7 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MAX_ITER 256 // Reduzido para melhor performance
+#define MAX_ITER 500 // Reduzido para melhor performance
 
 typedef struct s_data {
     void    *mlx;
@@ -106,7 +106,7 @@ int main(void) {
     draw_mandelbrot(&data);
     mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
-    mlx_hook(data.win, KeyPress, KeyPressMask, key_press, NULL);
+    mlx_hook(data.win, KeyPress, KeyPressMask, key_press, data.mlx);
     mlx_mouse_hook(data.win, mouse_hook, &data);
     mlx_hook(data.win, DestroyNotify, NoEventMask, close_window, data.mlx);
     
