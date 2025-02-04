@@ -16,7 +16,7 @@ int main ()
 
 	mlx = mlx_init();
 	win = mlx_win(mlx, WIDTH, HEIGHT, "VER COMO ESTA POHA FUNCIONA!!!");
-	mlx_loop(data.mlx);
+	mlx_loop(mlx);
 
 	return 0;
 }

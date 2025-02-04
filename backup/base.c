@@ -1,11 +1,12 @@
-#include <mlx.h>
+#include "minilibx_macos/mlx.h"
+#include "mlx.h"
 #include <math.h>
 #include <stdlib.h>
-#include <X11/X.h>
+#include <stdio.h>
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MAX_ITER 500 // Reduzido para melhor performance
+#define MAX_ITER 500
 
 typedef struct s_data {
     void    *mlx;
@@ -23,13 +24,16 @@ typedef struct s_data {
 } t_data;
 
 int close_window(void *param) {
-    mlx_loop_end(param);
-    return 0;
+    t_data *data = (t_data *)param;
+    mlx_destroy_window(data->mlx, data->win);
+    exit(0);
 }
 
 int key_press(int keycode, void *param) {
-    if (keycode == 65307) {
-        mlx_loop_end(param);
+    t_data *data = (t_data *)param;
+    if (keycode == 53) { // 53 é o código da tecla ESC no macOS
+        mlx_destroy_window(data->mlx, data->win);
+        exit(0);
     }
     return 0;
 }
@@ -52,8 +56,10 @@ int mandelbrot(double cr, double ci, int max_iter) {
 }
 
 void draw_mandelbrot(t_data *data) {
-    for (int py = 0; py < HEIGHT; py++) {
-        for (int px = 0; px < WIDTH; px++) {
+    int py = 0;
+    while (py < HEIGHT) {
+        int px = 0;
+        while (px < WIDTH) {
             double cr = data->x_min + (data->x_max - data->x_min) * px / WIDTH;
             double ci = data->y_min + (data->y_max - data->y_min) * py / HEIGHT;
 
@@ -62,7 +68,9 @@ void draw_mandelbrot(t_data *data) {
 
             int pixel = py * data->line_length + px * (data->bits_per_pixel / 8);
             *(int *)(data->addr + pixel) = pixel_color;
+            px++;
         }
+        py++;
     }
 }
 
@@ -78,7 +86,6 @@ int mouse_hook(int button, int x, int y, t_data *data) {
 
     double zoom_factor = 1.0 / data->zoom;
 
-    // Atualiza as coordenadas
     data->x_min = mouse_re - (mouse_re - data->x_min) * zoom_factor;
     data->x_max = mouse_re + (data->x_max - mouse_re) * zoom_factor;
     data->y_min = mouse_im - (mouse_im - data->y_min) * zoom_factor;
@@ -96,7 +103,7 @@ int main(void) {
     data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Mandelbrot Set");
     data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
     data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-    
+
     data.zoom = 1.0;
     data.x_min = -2.0;
     data.x_max = 1.0;
@@ -106,10 +113,10 @@ int main(void) {
     draw_mandelbrot(&data);
     mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
-    mlx_hook(data.win, KeyPress, KeyPressMask, key_press, data.mlx);
+    mlx_hook(data.win, 2, 1L << 0, key_press, &data); // KeyPress event
+    mlx_hook(data.win, 17, 1L << 17, close_window, &data); // DestroyNotify event
     mlx_mouse_hook(data.win, mouse_hook, &data);
-    mlx_hook(data.win, DestroyNotify, NoEventMask, close_window, data.mlx);
-    
+
     mlx_loop(data.mlx);
     return 0;
 }
