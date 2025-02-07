@@ -1,4 +1,4 @@
-#include </Users/yurivieiradossantos/Desktop/42sp/42_fractol/42_fract-ol/minilibx-linux-master/mlx.h>
+#include <mlx.h>
 #include <math.h>
 #include <stdlib.h>
 #include <X11/X.h>

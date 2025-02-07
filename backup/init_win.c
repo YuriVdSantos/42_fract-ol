@@ -5,7 +5,7 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MAX_ITER 100
+#define MAX_ITER 1000
 
 typedef struct s_data {
     void    *mlx;
@@ -35,7 +35,7 @@ int key_press(int keycode, void *param)
     if (keycode == 65307) 
     {
         mlx_loop_end(param);
-        free(param);
+        // free(param);
     }
     return(0);
 }

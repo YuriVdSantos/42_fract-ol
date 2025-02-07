@@ -1,4 +1,4 @@
-#include "minilibx_macos/mlx.h"
+#include <mlx.h>
 #include "mlx.h"
 #include <math.h>
 #include <stdlib.h>

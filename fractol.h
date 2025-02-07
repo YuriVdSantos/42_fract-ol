@@ -42,7 +42,7 @@ typedef struct s_img
 	char *pixels_ptr;
 	int bits_per_pixel;
 	int endian;
-	int line_lenght;
+	int line_length;
 }		t_img;
 
 typedef struct s_fractal
@@ -61,16 +61,17 @@ typedef struct s_fractal
 }		t_fractal;
 
 int		ft_strncmp(char *s1, char *s2, int n);
-void    putstr_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd);
 double  atodbl(char *s);
 void    fractal_init(t_fractal *fractal);
 void    fractal_render(t_fractal *fractal);
-double		map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
-t_complex   sum_complex(t_complex z1, t_complex z2);
+double map(int pixel, double min, double max, int size);
+t_complex sum_complex(t_complex z1, t_complex z2);
 t_complex   square_complex(t_complex z);
 int			key_handler(int keysym, t_fractal *fractal);
 int    	close_handler(t_fractal *fractal);
-int		mouse_handler(int button, int x, int y, t_fractal *fractal);
+int mouse_handler(int button, int x, int y, t_fractal *fractal);
+void	data_init(t_fractal *fractal);
 int		julia_track(int x, int y, t_fractal *fractal);
 
 #endif

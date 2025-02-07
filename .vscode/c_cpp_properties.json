@@ -1,18 +1,15 @@
 {
     "configurations": [
         {
-            "name": "macos-clang-arm64",
+            "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers"
+                "${workspaceFolder}/**"
             ],
+            "defines": [],
             "compilerPath": "/usr/bin/clang",
-            "cStandard": "${default}",
-            "cppStandard": "${default}",
-            "intelliSenseMode": "macos-clang-arm64",
-            "compilerArgs": [
-                ""
-            ]
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
         }
     ],
     "version": 4
