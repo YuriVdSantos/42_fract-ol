@@ -58,10 +58,10 @@ void	fractal_render(t_fractal *fractal)
 	int	y;
 
 	y = 0;
-	while (y < fractal->max_interaction)
+	while (y < WIDTH)
 	{
 		x = 0;
-		while (x < fractal->max_interaction)
+		while (x < HEIGHT)
 		{
 			handle_pixel(x, y, fractal);
 			printf("handle done\n");
