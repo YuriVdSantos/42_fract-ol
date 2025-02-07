@@ -24,9 +24,9 @@ typedef struct s_data {
     double  x_max;
     double  y_min;
     double  y_max;
-    int     fractal_type; // 0 for Mandelbrot, 1 for Julia
-    double  cx; // Julia set parameter
-    double  cy; // Julia set parameter
+    int     fractal_type;
+    double  cx;
+    double  cy; 
 }              t_data;
 
 int close_window(void *param)
