@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/fractol",
-            "args": ["mandelbrot"],
+            "args": ["julia", "0.4", "0.6"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

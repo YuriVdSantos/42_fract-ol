@@ -7,7 +7,6 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 
     offset = (y * img->line_length) + (x * (img->bits_per_pixel / 8));
     *(unsigned int *)(img->pixels_ptr + offset) = color;
-	printf("pixel put done");
 }
 
 static void	mandel_vs_julia(t_complex *z, t_complex *c, t_fractal *fractal)
@@ -44,7 +43,6 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		{
 			color = i * (0x001200 + (0x000012 *(1 / fractal->zoom)));
 			my_pixel_put(x, y, &fractal->img, color);
-			printf("\nFinished my_pixel_put\n");
 			return ;
 		}
 		++i;
@@ -64,11 +62,9 @@ void	fractal_render(t_fractal *fractal)
 		while (x < HEIGHT)
 		{
 			handle_pixel(x, y, fractal);
-			printf("handle done\n");
 			x++;
 		}
 		y++;
 	}
-	printf("START IMG_WIN\n");
     mlx_put_image_to_window(fractal->mlx, fractal->win_ptr, fractal->img.img_ptr, 0, 0);
 }

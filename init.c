@@ -5,25 +5,28 @@
 
 void malloc_error(void)
 {
-	perror("Problem with malloc");
 	exit(EXIT_FAILURE);
 }
 
 void	data_init(t_fractal *fractal)
 {
 	fractal->escape_value = 4;
-	fractal->max_interaction = 10;
+	fractal->max_interaction = 100;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
-	fractal->zoom = 1.0;
+	fractal->zoom = 1.0;    
+    fractal->x_min = -2.0;
+    fractal->x_max = 1.0;
+    fractal->y_min = -1.5;
+    fractal->y_max = 1.5;
 }
 
 static void	events_init(t_fractal *fractal)
 {
-	mlx_hook(fractal->win_ptr,DestroyNotify, StructureNotifyMask, close_handler, fractal);
-	mlx_key_hook(fractal->win_ptr, key_handler, fractal);
-	mlx_mouse_hook(fractal->win_ptr, mouse_handler, fractal);
-	mlx_hook(fractal->win_ptr, MotionNotify, PointerMotionMask, julia_track, fractal);
+    mlx_hook(fractal->win_ptr, DestroyNotify, StructureNotifyMask, close_handler, fractal);
+    mlx_key_hook(fractal->win_ptr, key_handler, fractal);
+    mlx_mouse_hook(fractal->win_ptr, mouse_handler, fractal);
+    mlx_hook(fractal->win_ptr, MotionNotify, PointerMotionMask, julia_track, fractal);
 }
 
 void	fractal_init(t_fractal *fractal)

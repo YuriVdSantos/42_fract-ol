@@ -7,7 +7,7 @@
 
 #define WIDTH 800
 #define HEIGHT 600
-#define MAX_ITER 50
+#define MAX_ITER 100
 
 typedef struct s_data {
     void    *mlx;
@@ -139,7 +139,7 @@ int main(int argc, char **argv) {
     data.x_max = 1.0;
     data.y_min = -1.5;
     data.y_max = 1.5;
-    data.fractal_type = 1; // Default to Mandelbrot
+    data.fractal_type = 0; // Default to Mandelbrot
 
     if (argc == 4 && strcmp(argv[1], "julia") == 0) {
         data.fractal_type = 1;

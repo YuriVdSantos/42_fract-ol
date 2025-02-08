@@ -11,8 +11,8 @@
 
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
-#define WIDTH 80
-#define HEIGHT 80
+#define WIDTH 800
+#define HEIGHT 800
 
 #define BLACK       0x000000
 #define WHITE       0xFFFFFF
@@ -58,6 +58,10 @@ typedef struct s_fractal
 	double shift_y;
 	double julia_x;
 	double julia_y;
+	double x_min;
+	double x_max;
+	double y_max;
+	double y_min;
 }		t_fractal;
 
 int		ft_strncmp(char *s1, char *s2, int n);
